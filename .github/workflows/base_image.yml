@@ -5,14 +5,14 @@ name: Build and release
 on:
   workflow_call:
     inputs:
-      image-dir:
+      image_dir:
         required: true
         type: string
         description: "The path to the docker file for example './<dir>/<dir>/Dockerfile' "
 
 defaults:
   run:
-    working-directory: ${{ inputs.image-dir }}
+    working-directory: base_image
 
 jobs:
   build_base:
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build image
-        run: make
+        run: echo ${{ inputs.image_dir }}
   release_base:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
