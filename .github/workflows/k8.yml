@@ -1,7 +1,7 @@
 # @format
 
 # Workflow name displayed in GitHub Actions
-name: app pipeline
+name: k8 image pipeline
 
 # Triggers that initiate the workflow execution
 on:
