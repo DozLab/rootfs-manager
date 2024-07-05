@@ -5,14 +5,14 @@ name: Build and release
 on:
   workflow_call:
     inputs:
-      image_dir:
+      image-dir:
         required: true
         type: string
         description: "The path to the docker file for example './<dir>/<dir>/Dockerfile' "
 
 defaults:
   run:
-    working-directory: ${{ inputs.image_dir }}
+    working-directory: ${{ inputs.image-dir }}
 
 jobs:
   build_base:
