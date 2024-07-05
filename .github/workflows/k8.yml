@@ -1,0 +1,48 @@
+# @format
+
+# Workflow name displayed in GitHub Actions
+name: app pipeline
+
+# Triggers that initiate the workflow execution
+on:
+  workflow_dispatch: # Manual triggering from Actions tab
+  pull_request:
+    # Runs on pull requests targeting the main branch (uncomment for specific paths)
+    paths:
+      - 'labs/k8_lab/**'
+    branches: [main]
+  push:
+    # Runs on pushes to the main branch (uncomment for specific paths)
+    paths:
+      - 'labs/k8_lab/**'
+    branches: [main]
+
+# Define jobs within the workflow
+jobs:
+  build-base: # Job name
+    runs-on: ubuntu-latest # Specify runner environment
+
+    steps:
+      # Steps executed sequentially within the job
+      - name: Checkout code from repository
+        uses: actions/checkout@v2
+
+      - name: Build base image using reusable workflow
+        uses: ./.github/workflows/base_image.yml@main # Reference reusable workflow
+        with:
+          image_dir: base_image # Argument passed to the reusable workflow
+        secrets: inherit # Inherit secrets from the main workflow
+
+  build-k8: # Job name
+    runs-on: ubuntu-latest # Specify runner environment
+
+    steps:
+      # Steps executed sequentially within the job
+      - name: Checkout code from repository
+        uses: actions/checkout@v2
+
+      - name: Build base image using reusable workflow
+        uses: ./.github/workflows/base_image.yml@main # Reference reusable workflow
+        with:
+          image_dir: labs/k8_lab # Argument passed to the reusable workflow
+        secrets: inherit # Inherit secrets from the main workflow
