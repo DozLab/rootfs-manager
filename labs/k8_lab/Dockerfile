@@ -1,6 +1,6 @@
 ARG OS_VERSION=22.04
 ARG TAG=test
-FROM dozman99/base_image:${OS_VERSION}"-"${TAG}
+FROM dozman99/base_image:${TAG}
 
 ARG ARCH="amd64"
 ARG CONTAINERD_VERSION=1.5.9

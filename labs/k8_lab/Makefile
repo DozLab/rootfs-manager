@@ -9,7 +9,7 @@ TAG?=$(shell git rev-parse --short HEAD)
 
 RELEASE_VERSIONS?=1.21.8 1.22.3 1.22.8 1.23.5 # RELEASE follows the kubernetes release
 
-build: $(addprefix build-,$(RELEASE_VERSIONS)-$(TAG))
+build: $(addprefix build-,$(RELEASE_VERSIONS))
 build-%:
 	$(DOCKER) build -t $(IMAGE_NAME):$*  \
 		--build-arg KUBERNETES_VERSION=$* \
@@ -30,6 +30,6 @@ build-%:
 		.
 
 
-push: $(addprefix push-,$(RELEASE_VERSIONS)-$(TAG))
+push: $(addprefix push-,$(RELEASE_VERSIONS))
 push-%:
 	$(DOCKER) push $(IMAGE_NAME):$*
