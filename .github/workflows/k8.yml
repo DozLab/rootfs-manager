@@ -21,12 +21,18 @@ on:
 jobs:
   build-base: # Job name
     uses: ./.github/workflows/base_image.yml # Reference reusable workflow
+    permissions:
+      contents: read
+      packages: write
     with:
       image_dir: base_image # Argument passed to the reusable workflow
     secrets: inherit # Inherit secrets from the main workflow
 
   build-k8: # Job name
     uses: ./.github/workflows/base_image.yml # Reference reusable workflow
+    permissions:
+      contents: read
+      packages: write
     with:
       image_dir: labs/k8_lab # Argument passed to the reusable workflow
     secrets: inherit # Inherit secrets from the main workflow
