@@ -12,7 +12,7 @@ on:
 
 defaults:
   run:
-    working-directory: base_image
+    working-directory: ${{ inputs.image_dir }}/
 
 jobs:
   build_base:
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build image
-        run: echo ${{ inputs.image_dir }}
+        run: make
   release_base:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
