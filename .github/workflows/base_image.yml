@@ -10,14 +10,17 @@ on:
         type: string
         description: "The path to the docker file for example './<dir>/<dir>/Dockerfile' "
 
-defaults:
-  run:
-    working-directory: ${{ inputs.image_dir }}/
+# defaults:
+#   run:
+#     working-directory: ${{ inputs.image_dir }}/
 
 jobs:
   build_base:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.image_dir }}
     permissions:
       contents: read
     steps:
@@ -27,6 +30,9 @@ jobs:
   release_base:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.image_dir }}
     permissions:
       contents: read
       packages: write
