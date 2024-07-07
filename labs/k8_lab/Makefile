@@ -2,6 +2,8 @@ DOCKER := docker
 BUILD_DATE:=$(shell date --rfc-3339=seconds)
 GIT_SHA:=$(shell git rev-parse HEAD)
 
+CONTAINERD_VERSION?=1.5.9
+OS_VERSION?=22.04# RELEASE follows the UBUNTU release
 REGISTRY?=docker.io/dozman99
 IMAGE_NAME?=$(REGISTRY)/lab-k8-os
 TAG?=$(shell git rev-parse --short HEAD)
