@@ -12,6 +12,7 @@ build: $(addprefix build-,$(OS_VERSION))
 build-%:
 	$(DOCKER) build -t $(IMAGE_NAME):$*  \
 		--build-arg OS_VERSION=$* \
+		--build-arg TAG=$(TAG) \
 		--build-arg OS_VERSION=$(OS_VERSION) \
 		--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
 		--label "org.opencontainers.image.authors"="Liquid Metal Authors" \
