@@ -11,7 +11,6 @@ OS_VERSION?=22.04 # RELEASE follows the UBUNTU release
 
 build:
 	$(DOCKER) build -t $(IMAGE_NAME):$(OS_VERSION)  \
-		# --build-arg OS_VERSION=$* \
 	    --build-arg OS_VERSION=$(OS_VERSION) \
 		--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
 		--label "org.opencontainers.image.authors"="Liquid Metal Authors" \
