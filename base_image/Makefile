@@ -8,11 +8,11 @@ TAG?=$(shell git rev-parse --short HEAD)
 
 OS_VERSION?=22.04 # RELEASE follows the UBUNTU release
 
-build: $(addprefix build,$(OS_VERSION))
-build-%:
-	$(DOCKER) build -t $(IMAGE_NAME):$*  \
-		--build-arg OS_VERSION=$* \
-		# --build-arg OS_VERSION=$(OS_VERSION) \
+
+build:
+	$(DOCKER) build -t $(IMAGE_NAME):$(OS_VERSION)  \
+		# --build-arg OS_VERSION=$* \
+	    --build-arg OS_VERSION=$(OS_VERSION) \
 		--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
 		--label "org.opencontainers.image.authors"="Liquid Metal Authors" \
 		--label "org.opencontainers.image.url"="https://github.com/weaveworks-liquidmetal/image-builder" \
@@ -27,6 +27,6 @@ build-%:
 		.
 
 
-push: $(addprefix push,$(OS_VERSION))
-push-%:
-	$(DOCKER) push $(IMAGE_NAME):$*
+
+push:
+	$(DOCKER) push $(IMAGE_NAME):$(OS_VERSION)
