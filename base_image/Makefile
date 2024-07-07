@@ -26,4 +26,4 @@ build:
 
 
 push:
-	$(DOCKER) push $(IMAGE_NAME):$(OS_VERSION)
+	$(DOCKER) push $(IMAGE_NAME):$(TAG)
