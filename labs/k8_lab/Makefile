@@ -4,18 +4,17 @@ GIT_SHA:=$(shell git rev-parse HEAD)
 
 REGISTRY?=docker.io/dozman99
 IMAGE_NAME?=$(REGISTRY)/lab-k8-os
-CONTAINERD_VERSION?=1.5.9
 TAG?=$(shell git rev-parse --short HEAD)
 
 RELEASE_VERSIONS?=1.21.8 1.22.3 1.22.8 1.23.5 # RELEASE follows the kubernetes release
 
 
 build:
-	$(DOCKER) build -t $(IMAGE_NAME):$(TAG) \
+	$(DOCKER) build -t $(IMAGE_NAME):$(TAG)  \
 		--build-arg KUBERNETES_VERSION=$(RELEASE_VERSIONS) \
 		--build-arg TAG=$(TAG) \
 		--build-arg OS_VERSION=$(OS_VERSION) \
-		--build-arg CONTAINERD_VERSION=$(CONTAINERD_VERSION) \
+		--build-arg CONTAINERD_VERSION=$(CONTAINERD_VERSION) \		
 		--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
 		--label "org.opencontainers.image.authors"="Liquid Metal Authors" \
 		--label "org.opencontainers.image.url"="https://github.com/weaveworks-liquidmetal/image-builder" \
@@ -24,7 +23,7 @@ build:
 		--label "org.opencontainers.image.vendor"="Weaveworks" \
 		--label "org.opencontainers.image.licenses"="MPL-2.0" \
 		--label "org.opencontainers.image.description"="A image to use for a microvm volume when creating a cluster using Cluster API Provider Microvm" \
-		--label "works.weave.liquidmetal.containerd"="$(CONTAINERD_VERSION)" \
+		--label "works.weave.liquidmetal.image_version"="$(OS_VERSION)" \
 		.
 
 

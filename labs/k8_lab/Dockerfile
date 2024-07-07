@@ -1,5 +1,5 @@
 ARG OS_VERSION=22.04
-ARG TAG=test
+ARG TAG=${OS_VERSION}
 FROM dozman99/base_image:${TAG}
 
 ARG ARCH="amd64"
