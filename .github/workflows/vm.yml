@@ -1,7 +1,7 @@
 # @format
 
 # Workflow name displayed in GitHub Actions
-name: vm image pipelime
+name: vm image pipeline
 # Triggers that initiate the workflow execution
 on:
   workflow_dispatch: # Manual triggering from Actions tab
