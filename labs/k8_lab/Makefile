@@ -12,7 +12,10 @@ RELEASE_VERSIONS?=1.21.8 # 1.22.3 1.22.8 1.23.5 # RELEASE follows the kubernetes
 
 
 build:
-	$(DOCKER) build -t $(IMAGE_NAME):$(TAG) --build-arg KUBERNETES_VERSION=$(RELEASE_VERSIONS) --build-arg TAG=$(TAG) --build-arg OS_VERSION=$(OS_VERSION) --build-arg CONTAINERD_VERSION=$(CONTAINERD_VERSION) .
+	$(DOCKER) build -t $(IMAGE_NAME):$(TAG)\
+		--build-arg KUBERNETES_VERSION=$(RELEASE_VERSIONS) \
+		--build-arg TAG=$(TAG) --build-arg OS_VERSION=$(OS_VERSION) \
+		--build-arg CONTAINERD_VERSION=$(CONTAINERD_VERSION) .
 		# --label "org.opencontainers.image.created"="$(BUILD_DATE)" \
 		# --label "org.opencontainers.image.authors"="Liquid Metal Authors" \
 		# --label "org.opencontainers.image.url"="https://github.com/weaveworks-liquidmetal/image-builder" \
