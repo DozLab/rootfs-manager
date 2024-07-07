@@ -27,8 +27,5 @@ build:
 		--label "org.opencontainers.image.description"="A image to use for a microvm volume when creating a cluster using Cluster API Provider Microvm" \
 		--label "works.weave.liquidmetal.image_version"="$(OS_VERSION)" \
 		.
-
-
-
 push:
 	$(DOCKER) push $(IMAGE_NAME):$(TAG)
