@@ -19,9 +19,7 @@ build:
 		--label "org.opencontainers.image.revision"="$(GIT_SHA)" \
 		--label "org.opencontainers.image.vendor"="Weaveworks" \
 		--label "org.opencontainers.image.licenses"="MPL-2.0" \
-		--label "org.opencontainers.image.title"="Cluster API Provider Microvm Kubernetes $*" \
 		--label "org.opencontainers.image.description"="A image to use for a microvm volume when creating a cluster using Cluster API Provider Microvm" \
-		--label "works.weave.liquidmetal.kubernetes"="$*" \
 		--label "works.weave.liquidmetal.image_version"="$(OS_VERSION)" \
 		.
 
