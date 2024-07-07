@@ -1,5 +1,5 @@
-ARG OS_VERSION=22.04
-FROM ubuntu:${OS_VERSION}
+ARG TAG=22.04
+FROM ubuntu:${TAG}
 
 # udev is needed for booting a "real" VM, setting up the ttyS0 console properly
 # kmod is needed for modprobing modules
@@ -23,4 +23,3 @@ RUN apt-get update && apt-get install -y \
       wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-

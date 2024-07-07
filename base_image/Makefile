@@ -5,13 +5,12 @@ GIT_SHA:=$(shell git rev-parse HEAD)
 REGISTRY?=docker.io/dozman99
 IMAGE_NAME?=$(REGISTRY)/lab-base_image
 TAG?=$(shell git rev-parse --short HEAD)
-BASE_TAG?=$(OS_VERSION)-$(shell git rev-parse --short HEAD)
 
-OS_VERSION?=22.04 # RELEASE follows the UBUNTU release
+OS_VERSION?=22.04# RELEASE follows the UBUNTU release
 
 
 build:
-	$(DOCKER) build -t $(IMAGE_NAME):$(BASE_TAG)  \
+	$(DOCKER) build -t $(IMAGE_NAME):$(TAG)  \
 	    --build-arg OS_VERSION=$(OS_VERSION) \
 		--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
 		--label "org.opencontainers.image.authors"="Liquid Metal Authors" \
