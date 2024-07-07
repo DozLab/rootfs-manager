@@ -6,7 +6,7 @@ REGISTRY?=docker.io/dozman99
 IMAGE_NAME?=$(REGISTRY)/lab-k8-os
 TAG?=$(shell git rev-parse --short HEAD)
 
-RELEASE_VERSIONS?=1.21.8 1.22.3 1.22.8 1.23.5 # RELEASE follows the kubernetes release
+RELEASE_VERSIONS?=1.21.8 # 1.22.3 1.22.8 1.23.5 # RELEASE follows the kubernetes release
 
 
 build:
