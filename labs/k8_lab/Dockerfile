@@ -4,7 +4,7 @@ FROM dozman99/lab-base_image:${TAG}
 ARG ARCH="amd64"
 ARG CONTAINERD_VERSION=1.7.19
 # Kubernetes version will be used to keep the kubeadm, kubelet, and kubectl version consistent
-ARG KUBERNETES_VERSION=1.21.8
+ARG KUBERNETES_VERSION=1.30
 
 RUN apt-get update && apt-get install -y \
         dnsutils \
@@ -53,16 +53,21 @@ RUN tar --no-overwrite-dir -C / -xzf cri-containerd-cni-${CONTAINERD_VERSION}-li
 
 ### Add apt repos
 # Kubeadm, Kubelet, and Kubectl
-RUN curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-RUN echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+RUN sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gpg 
+RUN mkdir -p -m 755 /etc/apt/keyrings && curl -fsSL https://pkgs.k8s.io/core:/stable:/v${KUBERNETES_VERSION}/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg 
+RUN echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v'${KUBERNETES_VERSION}'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
 
 RUN apt-get update && apt-get install -y \
-        kubeadm=${KUBERNETES_VERSION}-00 \
-        kubelet=${KUBERNETES_VERSION}-00 \
-        kubectl=${KUBERNETES_VERSION}-00 && \
+        kubeadm\
+        kubelet \
+        kubectl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     apt-mark hold kubelet kubeadm kubectl
+
+RUN kubeadm version
 
 RUN mkdir -p /etc/containerd && containerd config default > /etc/containerd/config.toml
 RUN rm /etc/cni/net.d/10-containerd-net.conflist
