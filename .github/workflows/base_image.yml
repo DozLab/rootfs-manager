@@ -9,7 +9,7 @@ on:
         required: true
         type: string
         description: "The path to the docker file for example './<dir>/<dir>/Dockerfile' "
-      os_version:
+      vars:
         required: false
         type: string
         description: "The path to the docker file for example './<dir>/<dir>/Dockerfile' "
