@@ -1,4 +1,4 @@
-ARG TAG=22.04
+ARG OS_VERSION=22.04
 FROM ubuntu:${TAG}
 
 # udev is needed for booting a "real" VM, setting up the ttyS0 console properly

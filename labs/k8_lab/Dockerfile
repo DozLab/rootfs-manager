@@ -2,7 +2,7 @@ ARG TAG=test
 FROM dozman99/lab-base_image:${TAG}
 
 ARG ARCH="amd64"
-ARG CONTAINERD_VERSION=1.5.9
+ARG CONTAINERD_VERSION=1.7.19
 # Kubernetes version will be used to keep the kubeadm, kubelet, and kubectl version consistent
 ARG KUBERNETES_VERSION=1.21.8
 

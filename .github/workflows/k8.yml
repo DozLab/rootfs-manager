@@ -26,6 +26,7 @@ jobs:
       packages: write
     with:
       image_dir: base_image # Argument passed to the reusable workflow
+      os_version: OS_VERSION=20.04
     secrets: inherit # Inherit secrets from the main workflow
 
   build-k8: # Job name
@@ -36,5 +37,6 @@ jobs:
       packages: write
     with:
       image_dir: labs/k8_lab # Argument passed to the reusable workflow
+      os_version: OS_VERSION=20.04
     secrets: inherit # Inherit secrets from the main workflow
     
