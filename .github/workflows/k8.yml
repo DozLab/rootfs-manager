@@ -17,7 +17,7 @@ on:
       - 'labs/k8_lab/**'
     branches: [main]
 env:
-  VARS: OS_VERSION=20.04 RELEASE_VERSIONS=1.30
+  VARS: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
 # Define jobs within the workflow
 jobs:
   build-base: # Job name
