@@ -1,5 +1,5 @@
 ARG OS_VERSION=22.04
-FROM ubuntu:${TAG}
+FROM ubuntu:${OS_VERSION}
 
 # udev is needed for booting a "real" VM, setting up the ttyS0 console properly
 # kmod is needed for modprobing modules
