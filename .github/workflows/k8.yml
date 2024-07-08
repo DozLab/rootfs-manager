@@ -16,8 +16,8 @@ on:
     paths:
       - 'labs/k8_lab/**'
     branches: [main]
-env:
-  VARS: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
+# env:
+#   VARS: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
 # Define jobs within the workflow
 jobs:
   build-base: # Job name
@@ -27,7 +27,7 @@ jobs:
       packages: write
     with:
       image_dir: base_image # Argument passed to the reusable workflow
-      variables: ${{ env.VARS }}
+      vars: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
     secrets: inherit # Inherit secrets from the main workflow
 
   build-k8: # Job name
@@ -38,6 +38,6 @@ jobs:
       packages: write
     with:
       image_dir: labs/k8_lab # Argument passed to the reusable workflow
-      os_version: ${{ env.VARS }}
+      vars: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
     secrets: inherit # Inherit secrets from the main workflow
     
