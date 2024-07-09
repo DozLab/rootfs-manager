@@ -9,7 +9,8 @@ ARG KUBERNETES_VERSION=1.30
 RUN apt-get update && apt-get install -y \
         dnsutils \
         cloud-init \
-        linux-image-virtual  \
+        linux-image-virtual \
+        systemd \
         less \
         apt-transport-https \
         ca-certificates \
