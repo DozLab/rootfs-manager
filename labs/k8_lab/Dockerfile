@@ -72,10 +72,8 @@ RUN kubeadm version
 RUN mkdir -p /etc/containerd && containerd config default > /etc/containerd/config.toml
 RUN rm /etc/cni/net.d/10-containerd-net.conflist
 RUN systemctl enable containerd
-RUN ps 1
 
-
-RUN echo '[Service] \nEnvironment="KUBELET_EXTRA_ARGS=--container-runtime=remote --runtime-request-timeout=15m --container-runtime-endpoint=unix:///run/containerd/containerd.sock"' | tee /etc/systemd/system/kubelet.service.d/0-containerd.conf
+# RUN echo '[Service] \nEnvironment="KUBELET_EXTRA_ARGS=--container-runtime=remote --runtime-request-timeout=15m --container-runtime-endpoint=unix:///run/containerd/containerd.sock"' | tee /etc/systemd/system/kubelet.service.d/0-containerd.conf
 
 
 RUN systemctl enable kubelet
