@@ -20,13 +20,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* 
 
-RUN mkdir -m 0700 -p /root/.ssh
 
-# Set the root password to root when logging in through the VM's ttyS0 console
-RUN echo "root:root" | chpasswd
 
-# Create the following files, but unset them
-RUN echo "" > /etc/machine-id && echo "" > /var/lib/dbus/machine-id
 
 #### Let iptables see bridged traffic ###
 RUN echo "overlay \n\
@@ -79,3 +74,13 @@ RUN echo '[Service] \nEnvironment="KUBELET_EXTRA_ARGS=--container-runtime=remote
 
 
 RUN systemctl enable kubelet
+
+
+# Create the following files, but unset them
+RUN echo "" > /etc/machine-id && echo "" > /var/lib/dbus/machine-id
+
+RUN mkdir -m 0700 -p /root/.ssh
+
+# Set the root password to root when logging in through the VM's ttyS0 console
+RUN echo "root:root" | chpasswd
+
