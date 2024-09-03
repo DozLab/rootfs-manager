@@ -26,6 +26,7 @@ jobs:
       run:
         working-directory: ${{ inputs.image_dir }}
     permissions:
+    # so that one does not push any image that is not ready 
       contents: read
     steps:
       - uses: actions/checkout@v3
