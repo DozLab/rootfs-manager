@@ -1,6 +1,6 @@
-.PHONY: build all push
+.PHONY: build  push
 
-all: build push 
+
 
 DOCKER := docker
 BUILD_DATE:=$(shell date --rfc-3339=seconds)
