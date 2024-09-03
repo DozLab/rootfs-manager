@@ -1,7 +1,3 @@
-.PHONY: build all push
-
-all: build push 
-
 DOCKER := docker
 BUILD_DATE:=$(shell date --rfc-3339=seconds)
 GIT_SHA:=$(shell git rev-parse HEAD)
