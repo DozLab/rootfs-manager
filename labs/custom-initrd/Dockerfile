@@ -1,6 +1,6 @@
 FROM golang:1.20-alpine AS build
 
-WORKDIR /go/src/github.com/alexellis/firecracker-init-lab/init
+WORKDIR /go/src/
 
 COPY init .
 
@@ -10,5 +10,5 @@ FROM alpine:3.18
 
 RUN apk add --no-cache curl ca-certificates htop
 
-COPY --from=build /go/src/github.com/alexellis/firecracker-init-lab/init/init /init
+COPY --from=build /go/src/init /init
 
