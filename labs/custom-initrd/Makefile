@@ -9,14 +9,6 @@ REGISTRY?=docker.io/dozman99
 IMAGE_NAME?=$(REGISTRY)/lab-custom-initrd-os
 TAG?=$(shell git rev-parse --short HEAD)
 
-RELEASE_VERSIONS?=1.21.8 # 1.22.3 1.22.8 1.23.5 # RELEASE follows the kubernetes release
-
-# init-local builds a static binary for local testing, but the lab uses a multi-stage
-# Dockerfile for this instead - https://docs.docker.com/develop/develop-images/multistage-build/
-init-local:
-	cd init && \
-	go build --tags netgo --ldflags '-s -w -extldflags "-lm -lstdc++ -static"' -o init main.go
-
 
 build:
 	$(DOCKER) build -t $(IMAGE_NAME):$(TAG)  \
@@ -31,6 +23,12 @@ build:
 		.
 push:
 	$(DOCKER) push $(IMAGE_NAME):$(TAG)
+
+# init-local builds a static binary for local testing, but the lab uses a multi-stage
+# Dockerfile for this instead - https://docs.docker.com/develop/develop-images/multistage-build/
+init-local:
+	cd init && \
+	go build --tags netgo --ldflags '-s -w -extldflags "-lm -lstdc++ -static"' -o init main.go
 
 # Extract a root filesystem into a tar
 # extract:
