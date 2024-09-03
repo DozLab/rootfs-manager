@@ -1,3 +1,7 @@
+.PHONY: build all push
+
+all: build push 
+
 DOCKER := docker
 BUILD_DATE:=$(shell date --rfc-3339=seconds)
 GIT_SHA:=$(shell git rev-parse HEAD)
@@ -18,7 +22,7 @@ build:
 		--label "org.opencontainers.image.source"="https://github.com/weaveworks-liquidmetal/image-builder/tree/main/capmvm/kubernetes" \
 		--label "org.opencontainers.image.revision"="$(GIT_SHA)" \
 		--label "org.opencontainers.image.vendor"="Weaveworks" \
-		--label "org.opencontainers.image.description"="A image to use for a microvm volume when creating a cluster using Cluster API Provider Microvm" \
+		--label "org.opencontainers.image.description"="A image to use for a microvm volume with UBUNTU" \
 		--label "works.weave.liquidmetal.image_version"="$(OS_VERSION)" \
 		.
 
