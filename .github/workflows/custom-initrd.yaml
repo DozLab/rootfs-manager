@@ -1,7 +1,7 @@
 # @format
 
 # Workflow name displayed in GitHub Actions
-name: k8 image pipeline
+name: custom-initrd image pipeline
 
 # Triggers that initiate the workflow execution
 on:
@@ -9,18 +9,18 @@ on:
   pull_request:
     # Runs on pull requests targeting the main branch (uncomment for specific paths)
     paths:
-      - 'labs/custom-initrdb/**'
+      - 'labs/custom-initrd/**'
     branches: [main]
   push:
     # Runs on pushes to the main branch (uncomment for specific paths)
     paths:
-      - 'labs/custom-initrdb/**'
+      - 'labs/custom-initrd/**'
     branches: [main]
 # env:
 #   VARS: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
 # Define jobs within the workflow
 jobs:
-  build-k8: # Job name
+  build-custom-initrd: # Job name
     uses: ./.github/workflows/base_image.yml # Reference reusable workflow
     permissions:
       contents: read
