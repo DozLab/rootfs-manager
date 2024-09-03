@@ -18,6 +18,7 @@ on:
 
 # Define jobs within the workflow
 jobs:
+# use versioning to avoid this multistage jobs for the baseimage container
   build-base: # Job name
     uses: ./.github/workflows/base_image.yml # Reference reusable workflow
     permissions:

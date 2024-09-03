@@ -9,36 +9,23 @@ on:
   pull_request:
     # Runs on pull requests targeting the main branch (uncomment for specific paths)
     paths:
-      - 'labs/k8_lab/**'
+      - 'labs/custom-initrdb/**'
     branches: [main]
   push:
     # Runs on pushes to the main branch (uncomment for specific paths)
     paths:
-      - 'labs/k8_lab/**'
+      - 'labs/custom-initrdb/**'
     branches: [main]
 # env:
 #   VARS: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
 # Define jobs within the workflow
 jobs:
-# use versioning to avoid this multistage jobs for the baseimage container
-  build-base: # Job name
-    uses: ./.github/workflows/base_image.yml # Reference reusable workflow
-    permissions:
-      contents: read
-      packages: write
-    with:
-      image_dir: base_image # Argument passed to the reusable workflow
-      vars: OS_VERSION=20.04 RELEASE_VERSIONS=1.30
-    secrets: inherit # Inherit secrets from the main workflow
-
   build-k8: # Job name
-    needs:  build-base
     uses: ./.github/workflows/base_image.yml # Reference reusable workflow
     permissions:
       contents: read
       packages: write
     with:
-      image_dir: labs/k8_lab # Argument passed to the reusable workflow
-      vars: OS_VERSION=20.04 RELEASE_VERSIONS=1.30
+      image_dir: labs/custom-initrd # Argument passed to the reusable workflow
     secrets: inherit # Inherit secrets from the main workflow
     
