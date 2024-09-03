@@ -34,7 +34,6 @@ jobs:
 
   release_image:
     if: github.event_name != 'push'
-    needs: build_image
     runs-on: ubuntu-latest
     defaults:
       run:
