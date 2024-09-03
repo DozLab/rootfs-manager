@@ -20,7 +20,7 @@ on:
 
 jobs:
   build_image:
-    if: github.event_name == 'pull_request'
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -34,7 +34,7 @@ jobs:
         run: make build ${{ inputs.vars }}
 
   release_image:
-    if: github.event_name == 'push'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     defaults:
       run:
