@@ -19,7 +19,7 @@ on:
 #     working-directory: ${{ inputs.image_dir }}/
 
 jobs:
-  build_image:
+  verify_image:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
     defaults:
