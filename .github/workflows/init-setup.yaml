@@ -1,0 +1,31 @@
+# @format
+
+# Workflow name displayed in GitHub Actions
+name: init-setup image pipeline
+
+# Triggers that initiate the workflow execution
+on:
+  workflow_dispatch: # Manual triggering from Actions tab
+  pull_request:
+    # Runs on pull requests targeting the main branch (uncomment for specific paths)
+    paths:
+      - 'init-setup/**'
+    branches: [main]
+  push:
+    # Runs on pushes to the main branch (uncomment for specific paths)
+    paths:
+      - 'init-setup/**'
+    branches: [main]
+# env:
+#   VARS: 'OS_VERSION=20.04 RELEASE_VERSIONS=1.30'
+# Define jobs within the workflow
+jobs:
+  build-init-setup: # Job name
+    uses: ./.github/workflows/base_image.yml # Reference reusable workflow
+    permissions:
+      contents: read
+      packages: write
+    with:
+      image_dir: init-setup # Argument passed to the reusable workflow
+    secrets: inherit # Inherit secrets from the main workflow
+    

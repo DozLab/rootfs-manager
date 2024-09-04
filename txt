@@ -1,8 +1,0 @@
-Here's how a generic scheduler works:
-
-Job Submission: Jobs or tasks are submitted to the scheduler. These jobs can represent applications, processes, or workloads that require resources to execute.
-Resource Definition: The resources required by each job are defined. This might include CPU, memory, storage, network bandwidth, or specific software dependencies.
-Resource Availability: The scheduler maintains information about available resources in the system. This could involve monitoring CPU, memory usage on various nodes in a cluster or the availability of specific software on different machines.
-Matching Jobs to Resources: The scheduler uses a matching algorithm to pair jobs with the most suitable available resources. This algorithm considers various factors like resource requirements, resource constraints, workload priorities, and potentially even affinity/anti-affinity rules (placing related workloads together or separating them).
-Job Execution: Once a job is matched to a resource, the scheduler triggers its execution on that specific resource. This might involve starting a process, deploying a container, or launching a virtual machine.me
-
