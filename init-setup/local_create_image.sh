@@ -4,7 +4,7 @@
 set -ex
 
 # Set default values if not provided
-: "${IMAGE_PATH:="$(pwd)/disk/image.ext4"}"
+: "${IMAGE_PATH:="./disk/image.ext4"}"
 : "${IMAGE_SIZE:=1G}"
 : "${BUILD_TEST:=false}"
 : "${CONTAINER_IMAGE_NAME:=dozman99/lab-custom-initrd-os:0b51c75}"
@@ -31,19 +31,20 @@ extract() {
     docker rm -f extract
 }
 
+# I will put this in a container because of permision
 # Create disk image
 create_image() {
     echo "Creating disk image..."
-    sudo rm -f "$IMAGE_PATH" || true
-    sudo fallocate -l "$IMAGE_SIZE" "$IMAGE_PATH"
-    sudo mkfs.ext4 "$IMAGE_PATH"
+    rm -f "$IMAGE_PATH" || true
+    fallocate -l "$IMAGE_SIZE" "$IMAGE_PATH"
+    mkfs.ext4 "$IMAGE_PATH"
 
     TMP=$(mktemp -d)
     echo "Mounting image at $TMP..."
-    sudo mount -o loop "$IMAGE_PATH" "$TMP"
-    sudo tar -xvf rootfs.tar -C "$TMP"
+    mount -o loop "$IMAGE_PATH" "$TMP"
+    tar -xvf rootfs.tar -C "$TMP"
     echo "Unmounting image..."
-    sudo umount "$TMP"
+    umount "$TMP"
 }
 
 # Execute functions
