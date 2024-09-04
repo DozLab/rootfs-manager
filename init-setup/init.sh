@@ -13,6 +13,7 @@ echo "IMAGE_SIZE=$IMAGE_SIZE"
 
 echo "Ensuring image folder $IMAGE_FOLDER"
 mkdir -p $IMAGE_FOLDER
+mv /app/image.ext4 /disk/image.ext4 || echo "No resource found locally, validate download process"
 
 if [ ! -f "$IMAGE_PATH" ] && [ ! -z "$IMAGE_DOWNLOAD_URL" ]; then
     echo "RootFS image not found : $IMAGE_PATH"

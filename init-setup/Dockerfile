@@ -5,7 +5,7 @@ WORKDIR /app
 RUN apk add --no-cache \
     e2fsprogs-extra
 
-COPY ./disk/ /disk/
+COPY ./disk/ .
 
 
 COPY init.sh init.sh
