@@ -7,7 +7,6 @@ RUN apk add --no-cache \
 
 COPY ./disk/ .
 
-
 COPY init.sh init.sh
 
 CMD ["/app/init.sh"]
