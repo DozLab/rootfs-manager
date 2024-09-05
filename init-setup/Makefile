@@ -8,6 +8,7 @@ TAG?=$(shell git rev-parse --short HEAD)
 
 build:
 	# ./local_create_image.sh && \
+	mkdir ./disk && \
 	$(DOCKER) build -t $(IMAGE_NAME):$(TAG) \
 	    --build-arg OS_VERSION=$(OS_VERSION) \
 		--label "org.opencontainers.image.created"="$(BUILD_DATE)" \
