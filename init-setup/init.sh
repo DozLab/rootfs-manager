@@ -1,6 +1,7 @@
 #!/bin/sh
 
 : ${IMAGE_PATH="/srv/vm/kernels/image.ext4"}
+: ${LOCAL_DEV_IMAGE_PATH="/app/image.ext4"}
 : ${IMAGE_DOWNLOAD_URL=""}
 : ${IMAGE_SIZE="1G"}
 
@@ -13,7 +14,7 @@ echo "IMAGE_SIZE=$IMAGE_SIZE"
 
 echo "Ensuring image folder $IMAGE_FOLDER"
 mkdir -p $IMAGE_FOLDER
-mv /app/image.ext4 ${IMAGE_PATH} || echo "No resource found locally, validate download process"
+mv ${LOCAL_DEV_IMAGE_PATH} ${IMAGE_PATH} || echo "No resource found locally, validate download process"
 
 if [ ! -f "$IMAGE_PATH" ] && [ -z "$IMAGE_DOWNLOAD_URL" ]; then
     echo "Resizing Image using local image"
